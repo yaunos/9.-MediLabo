@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Home</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" >
+</head>
+
+<body>
+<div class="container">
+
+    <div class="row"><h2>Patient List</h2></div>
+    <div class="row">
+
+        <a href="/web/patient/add" class="btn btn-primary btn-sm">Add a patient</a>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Birth Date</th>
+                <th>Gender</th>
+                <th>Address</th>
+                <th>Phone</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tr>
+            <tr th:each="patient: ${patients}">
+                <td><span th:text="${patient.id}">Id</span></td>
+                <td><span th:text="${patient.firstname}">Firstname</span></td>
+                <td><span th:text="${patient.lastname}"> >Lastname </span></td>
+                <!-- <td><span th:text="${patient.dateOfBirth}"> Birth Date </span></td> -->
+                <!-- <td><span th:text="${#dates.format(patient.dateOfBirth, 'yyyy-MMM-dd')}"> Birth Date </span></td> -->
+                <td><span th:text="${patient.dateOfBirth}">Birth date</span></td>
+                <td><span th:text="${patient.gender}">Gender</span></td>
+                <td><span th:text="${patient.address}">Address</span></td>
+                <td><span th:text="${patient.phoneNumber}">Phone</span></td>
+                <td style="width: 15%" class="text-center">
+                    <a th:href="@{/web/patient/update/{id}(id=${patient.id})}">Edit</a>&nbsp;|&nbsp;
+                    <a th:href="@{/web/patient/delete/{id}(id=${patient.id})}">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
