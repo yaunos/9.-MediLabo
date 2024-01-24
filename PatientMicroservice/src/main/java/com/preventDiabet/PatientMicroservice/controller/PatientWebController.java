@@ -1,9 +1,8 @@
 package com.preventDiabet.PatientMicroservice.controller;
 
-
-
 import com.preventDiabet.PatientMicroservice.model.Patient;
 import com.preventDiabet.PatientMicroservice.service.PatientService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -11,8 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 // import javax.validation.Valid;
+import javax.validation.Valid;
+import java.util.Date;
+import java.util.List;
+
 
 @Controller
 public class PatientWebController {
@@ -36,7 +38,7 @@ public class PatientWebController {
         return "patientAdd";
     }
 
-    /*
+
     @PostMapping("/web/patient/validate")
     public String validate(@Valid @DateTimeFormat(pattern= "yyyy-MM-dd") Patient patient, BindingResult result, Model model) {
         // If no errors in data provided by user, save data and go back to 'list' page
@@ -53,8 +55,8 @@ public class PatientWebController {
 
     @GetMapping("/web/patient/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        Patient patient = patientService.getPatientsById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid Patient Id:" + id));
+        Patient patient = patientService.getPatientsById(id);
+        //       .orElseThrow(() -> new IllegalArgumentException("Invalid Patient Id:" + id));
         model.addAttribute("patient", patient);
         return "patientUpdate";
     }
@@ -81,8 +83,6 @@ public class PatientWebController {
         patientService.deletePatientById(id);
         return "redirect:/web/patient/list";
     }
-
-     */
 
 }
 

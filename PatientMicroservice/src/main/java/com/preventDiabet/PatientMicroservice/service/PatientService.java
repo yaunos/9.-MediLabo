@@ -3,7 +3,6 @@ package com.preventDiabet.PatientMicroservice.service;
 import com.preventDiabet.PatientMicroservice.model.Patient;
 import com.preventDiabet.PatientMicroservice.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

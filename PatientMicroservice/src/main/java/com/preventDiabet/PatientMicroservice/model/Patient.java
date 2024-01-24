@@ -1,31 +1,32 @@
 package com.preventDiabet.PatientMicroservice.model;
 
-// import javax.persistence.*;
 
-import jakarta.validation.constraints.NotBlank;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+// import org.springframework.data.annotation.Id;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
-// @Entity
-
+@Entity
+@Table(name = "patient")
 /**
  * data.mongoDB.coreMapping
  */
-@Document(collection = "patients")
+// @Document(collection = "patients")
 
 public class Patient {
 
-    @Id
+
     /**
      * it seems MongoDB doesn't use same syntax for Ids like in SQL
      */
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // private Integer patientId;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     // private ObjectId patientId;
 
-    private int id;
+    //private int id;
     @NotBlank
     private String firstname;
     @NotBlank
@@ -42,7 +43,7 @@ public class Patient {
     // getters and setters
 
     // public Integer getPatientId() {return patientId;}
-    public int id() {return id;};
+    public int getId() {return id;};
 
     public void setId(int id) {
         this.id = id;
@@ -97,4 +98,5 @@ public class Patient {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
 }

@@ -1,10 +1,10 @@
 package com.preventDiabet.PatientMicroservice.repository;
 
 import com.preventDiabet.PatientMicroservice.model.Patient;
-import org.bouncycastle.pqc.crypto.lms.LMSigParameters;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.Id;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +16,8 @@ import java.util.Optional;
 
 // We can now interact with the database
 
-public interface PatientRepository extends MongoRepository<Patient, String> {
+//public interface PatientRepository extends MongoRepository<Patient, String> {
+public interface PatientRepository extends CrudRepository<Patient, String> {
     List<Patient> findAll();
     List<Patient> findByLastname(String lastname);
 

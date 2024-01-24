@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8"/>
     <title>Home</title>
-    <link rel="stylesheet" href="../../css/bootstrap.min.css" >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 
 <body>
@@ -14,6 +14,7 @@
     <div class="row">
 
         <a href="/web/patient/add" class="btn btn-primary btn-sm">Add a patient</a>
+        <br>
         <table class="table table-bordered">
             <thead>
             <tr>
@@ -28,7 +29,7 @@
             </thead>
             <tbody>
             </tr>
-            <tr th:each="patient: ${patients}">
+            <tr th:each="patient: ${listPatients}">
                 <td><span th:text="${patient.id}">Id</span></td>
                 <td><span th:text="${patient.firstname}">Firstname</span></td>
                 <td><span th:text="${patient.lastname}"> >Lastname </span></td>
