@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8"/>
   <title>Home</title>
-  <!-- <link rel="stylesheet" href="../../css/bootstrap.min.css" > -->
+  <!-- <link rel="sty <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">lesheet" href="../../css/bootstrap.min.css" > -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
@@ -15,7 +15,7 @@
   </div>
 
   <div class="row">
-    <form action="#" th:action="@{/web/patient/validate}" th:object="${p}" method="post" class="form-horizontal" style="width: 100%">
+    <form action="#" th:action="@{/web/patient/validate}" th:object="${patient}" method="post" class="form-horizontal" style="width: 100%">
 
       <div class="form-group">
         <label for="firstname" class="col-sm-2 control-label">Firstname</label>

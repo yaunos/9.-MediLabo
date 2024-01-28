@@ -40,7 +40,8 @@ public class PatientWebController {
 
 
     @PostMapping("/web/patient/validate")
-    public String validate(@Valid @DateTimeFormat(pattern= "yyyy-MM-dd") Patient patient, BindingResult result, Model model) {
+    //public String validate(@Valid @DateTimeFormat(pattern= "yyyy-MM-dd") Patient patient, BindingResult result, Model model) {
+    public String validate(Patient patient, BindingResult result, Model model) {
         // If no errors in data provided by user, save data and go back to 'list' page
         if (!result.hasErrors()) {
             patientService.addPatient(patient);

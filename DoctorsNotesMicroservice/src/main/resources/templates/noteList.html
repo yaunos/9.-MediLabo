@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container">
+
+    <div class="row"><h2>Notes List</h2></div>
+    <div class="row">
+
+        <a href="/web/note/add" class="btn btn-primary btn-sm">Add New</a>
+        <br>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Patient Id</th>
+                <th>Patient Name</th>
+                <th>Doctor's notes</th>
+                <th>Date</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            </tr>
+            <tr th:each="note: ${listNotes}">
+                <td><span th:text="${note.patId}"> Patient Id </span></td>
+                <td><span th:text="${note.patient}"> Patient Name </span></td>
+                <td><span th:text="${note.note}"> Doctor's notes </span></td>
+
+                <td><span th:text="${#dates.format(note.date, 'yyyy-MMM-dd')}"> Date </span></td>
+
+
+                <td style="width: 15%" class="text-center">
+                    <a th:href="@{/web/note/update/{id}(id=${note.id})}">Edit</a>&nbsp;|&nbsp;
+                    <a th:href="@{/web/note/delete/{id}(id=${note.id})}">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
