@@ -40,15 +40,25 @@ public class PatientWebController {
 
 
     @PostMapping("/web/patient/validate")
-    //public String validate(@Valid @DateTimeFormat(pattern= "yyyy-MM-dd") Patient patient, BindingResult result, Model model) {
-    public String validate(Patient patient, BindingResult result, Model model) {
+    public String validate(@Valid @DateTimeFormat(pattern= "yyyy-MM-dd") Patient patient, BindingResult result, Model model) {
+        //public String validate(Patient patient, BindingResult result, Model model) {
         // If no errors in data provided by user, save data and go back to 'list' page
         if (!result.hasErrors()) {
-            patientService.addPatient(patient);
-            List<Patient> listPatients = patientService.getAllPatients();
-            model.addAttribute("listPatients", listPatients);
-            return "redirect:/web/patient/list";
+            try {
+                patientService.addPatient(patient);
+                List<Patient> listPatients = patientService.getAllPatients();
+                model.addAttribute("listPatients", listPatients);
+                return "redirect:/web/patient/list";
+            } catch (Exception e) {
+                // Log the exception for debugging
+                e.printStackTrace();
+            }
+
         }
+        result.getAllErrors().forEach(error -> {
+            System.err.println("Validation Error: " + error.getDefaultMessage());
+        });
+
         // else stay on the current page
         return "patientAdd";
     }

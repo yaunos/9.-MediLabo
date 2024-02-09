@@ -42,8 +42,10 @@ public class Patient {
 
     // getters and setters
 
-    // public Integer getPatientId() {return patientId;}
-    public int getId() {return id;};
+    // This syntax was an error with int : The error message was indicating that there was a NullPointerException when trying to invoke the intValue()
+    // public int getId() {return id;};
+    public Integer getId() {return id;}
+
 
     public void setId(int id) {
         this.id = id;

@@ -115,6 +115,23 @@
 			<version>2.0.2</version>
 		</dependency>
 
+		<!-- Need to add it to define Patient as a Feign client
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+		-->
+
+		<!--
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-openfeign-core</artifactId>
+			<version>4.1.0-RC1</version>
+			<scope>compile</scope>
+		</dependency>
+		-->
+
+
 	</dependencies>
 	<!--
 	<dependencyManagement>
@@ -126,6 +143,10 @@
 		</dependencies>
 	</dependencyManagement>
 	-->
+
+	<!-- Need to add it to define Patient as a Feign client -->
+
+
 	<build>
 		<plugins>
 			<!-- <plugin>

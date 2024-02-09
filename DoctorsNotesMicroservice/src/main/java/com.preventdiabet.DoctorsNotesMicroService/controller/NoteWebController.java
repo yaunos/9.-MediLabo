@@ -2,6 +2,8 @@ package com.preventdiabet.DoctorsNotesMicroService.controller;
 
 import com.preventdiabet.DoctorsNotesMicroService.model.Note;
 import com.preventdiabet.DoctorsNotesMicroService.service.NoteService;
+
+
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.Date;
 import java.util.List;
@@ -43,12 +46,22 @@ public class NoteWebController {
     public String validate(@Valid @DateTimeFormat(pattern= "yyyy-MM-dd") Note note, BindingResult result, Model model) {
         // If there are no errors in data provided by user, save data and go back to 'list' page
         if (!result.hasErrors()) {
-            note.setDate(new Date());
-            noteService.addNote(note);
-            List<Note> listNotes = noteService.getAllNotes();
-            model.addAttribute("listNotes", listNotes);
-            return "redirect:/web/note/list";
+            try {
+                note.setDate(new Date());
+                noteService.addNote(note);
+                List<Note> listNotes = noteService.getAllNotes();
+                model.addAttribute("listNotes", listNotes);
+                return "redirect:/web/note/list";
+            } catch (Exception e) {
+                // Log the exception for debugging
+                e.printStackTrace();
+            }
         }
+
+        result.getAllErrors().forEach(error -> {
+            System.err.println("Validation Error: " + error.getDefaultMessage());
+        });
+
         // else stay on the current page
         return "noteAdd";
     }

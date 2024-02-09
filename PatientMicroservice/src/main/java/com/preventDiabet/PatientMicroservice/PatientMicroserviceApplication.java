@@ -8,9 +8,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 @SpringBootApplication
+@Configuration // To be considered as a feign client
+//@FeignClient(name = "patient-service")
 public class PatientMicroserviceApplication {
 // public class PatientMicroserviceApplication implements CommandLineRunner {
 // public class PatientMicroserviceApplication extends SpringBootServletInitializer {
