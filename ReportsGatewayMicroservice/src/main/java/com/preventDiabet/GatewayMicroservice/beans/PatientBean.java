@@ -1,10 +1,12 @@
 package com.preventDiabet.GatewayMicroservice.beans;
 
+import java.util.Date;
+
 public class PatientBean {
     private Integer id;
     private String firstname;
     private String lastname;
-    private String dateOfBirth;
+    private Date dateOfBirth;
     private String gender;
     private String address;
     private String phoneNumber;
@@ -33,11 +35,11 @@ public class PatientBean {
         this.lastname = lastname;
     }
 
-    public String getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

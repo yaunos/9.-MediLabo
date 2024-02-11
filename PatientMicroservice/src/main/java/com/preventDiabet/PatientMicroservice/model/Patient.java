@@ -33,7 +33,7 @@ public class Patient {
     private String lastname;
     //@DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotBlank
-    private String dateOfBirth;
+    private Date dateOfBirth;
     @NotBlank
     private String gender;
     private String address;
@@ -68,12 +68,12 @@ public class Patient {
     }
 
     //public Date getDateOfBirth() {
-    public @NotBlank String getDateOfBirth() {
+    public @NotBlank Date getDateOfBirth() {
         return dateOfBirth;
     }
 
     // public void setDateOfBirth(Date dateOfBirth) {
-    public void setDateOfBirth(@NotBlank String dateOfBirth) {
+    public void setDateOfBirth(@NotBlank Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

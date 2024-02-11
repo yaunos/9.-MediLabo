@@ -1,5 +1,6 @@
 package com.preventDiabet.PatientMicroservice.configuration;
 
+
 import com.preventDiabet.PatientMicroservice.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -29,16 +30,18 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
                     // .headers().defaultsDisabled().disable();
 
                     // .csrf().disable()
+
                     .authorizeRequests()
-                        .antMatchers("/css/**", "/images/**", "/login.html", "/login", "/loginSuccess.html", "/loginFailure.html", "/web/**").permitAll()
-                        .anyRequest().authenticated()
+                     //   .antMatchers("/css/**", "/images/**", "/login.html", "/login", "/loginSuccess.html", "/loginFailure.html", "/web/**").permitAll()
+                    .antMatchers("/**").permitAll()
+                    .anyRequest().authenticated()
                     .and()
-                    .oauth2Login()
-                        .loginPage("/login.html")
-                        .defaultSuccessUrl("/loginSuccess.html", true)
-                        .failureUrl("/loginFailure.html")
-                        .permitAll()
-                    .and()
+                    //.oauth2Login()
+                    //    .loginPage("/login.html")
+                    //    .defaultSuccessUrl("/loginSuccess.html", true)
+                    //    .failureUrl("/loginFailure.html")
+                    //    .permitAll()
+                    //.and()
                     .logout()
                     .permitAll();
 
@@ -50,3 +53,4 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
             auth.userDetailsService(userDetailsService);
         }
 }
+

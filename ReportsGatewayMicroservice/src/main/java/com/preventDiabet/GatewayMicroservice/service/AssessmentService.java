@@ -19,15 +19,18 @@ public class AssessmentService {
     private PatientBeanService patientBeanService;
     @Autowired
     private NoteBeanService noteBeanService;
-    public int getPatientAge(PatientBean patient){
+    public long getPatientAge(PatientBean patient){
         Date todaysDate = new Date();
 
         // validate inputs ...
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        int d1 = Integer.parseInt(formatter.format(patient.getDateOfBirth()));
-        int d2 = Integer.parseInt(formatter.format(todaysDate));
+        // DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        // int d1 = Integer.parseInt(formatter.format(patient.getDateOfBirth()));
+        // int d2 = Integer.parseInt(formatter.format(todaysDate));
+        /**
+         *  Conversion pour obtenir un nombre d'années cohérent
+         */
 
-        int age = (d2 - d1) / 10000;
+        long age = (long)((todaysDate.getTime() - patient.getDateOfBirth().getTime()) / (365.25*24*60*60*1000));
         return age;
     }
 
@@ -68,7 +71,8 @@ public class AssessmentService {
          *  Javadoc here to explain
          */
 
-        int patientAge = getPatientAge(patient);
+        // int patientAge = getPatientAge(patient);
+        long patientAge = getPatientAge(patient);
         String patientGender = patient.getGender();
         int keywordsCount = countKeywordsInNotesForPatientById(patient.getId());
 
@@ -95,7 +99,8 @@ public class AssessmentService {
 
     public String assessmentOfDiabetStatement (PatientBean patient){
 
-        int patientAge = getPatientAge(patient);
+        // int patientAge = getPatientAge(patient);
+        long patientAge = getPatientAge(patient);
         DiabetEvaluation diabetEvaluation = estimateRisksEvaluationOfPatient(patient);
 
         String assessment = "Patient: " + patient.getFirstname() + " " + patient.getLastname() + " (age " + patientAge  +") diabetes assessment is: " + diabetEvaluation.getLevelInString();

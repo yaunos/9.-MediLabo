@@ -8,7 +8,8 @@ public class AssessmentDTO {
 
     private PatientBean patient;
     private List<NoteBean> notes;
-    private int age;
+    // private int age;
+    private long age;
     private DiabetEvaluation diabetEvaluation;
 
     public PatientBean getPatient() {
@@ -27,11 +28,11 @@ public class AssessmentDTO {
         this.notes = notes;
     }
 
-    public int getAge() {
+    public long getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(long age) {
         this.age = age;
     }
 
