@@ -7,7 +7,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-// On active les clients Feign au niveau com.preventDiabet
+// On active les clients Feign au niveau com.preventDiabet car c'est ici qu'ils se situent
 @EnableFeignClients("com.preventDiabet")
 // EnableFeignClients(basePackages = "com.preventDiabet")
 

@@ -8,7 +8,14 @@ Here we deal with diabet's problems with a solution composed of different micros
 
 **PatientMicroService**
 
+
+This MicroService is available from http://localhost:8080
+
 **DoctorsNotesMicroService**
 
+This MicroService is available from http://localhost:8082
+
 **GatewayMicroservice**
+
+This MicroService is available from http://localhost:8082
 

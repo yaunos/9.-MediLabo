@@ -34,7 +34,7 @@ public class AssessmentService {
         return age;
     }
 
-
+    /* Check if keyword is present in a note */
     public boolean isKeywordPresentInList (String keyword, List<String> notes){
 
         boolean keywordFound = false;
@@ -47,6 +47,7 @@ public class AssessmentService {
         return keywordFound;
     }
 
+    /* If keyword is present the counter is incremented */
     public int countKeywordsInNotesForPatientById (int patientId){
 
         List<NoteBean> notesByPatId = noteBeanService.getNoteByPatient(patientId);
@@ -64,11 +65,13 @@ public class AssessmentService {
     }
 
 
+    /* The risk is evaluated depending on keyword count, gender and age */
+
     public DiabetEvaluation estimateRisksEvaluationOfPatient (PatientBean patient) {
         DiabetEvaluation diabetEvaluation = DiabetEvaluation.NONE;
 
         /**
-         *  Javadoc here to explain
+         *  The patient can be in one of Risk level
          */
 
         // int patientAge = getPatientAge(patient);
@@ -79,7 +82,8 @@ public class AssessmentService {
         if (keywordsCount==0){
             diabetEvaluation = DiabetEvaluation.NONE;
         }
-        else if (patientAge > 30 && keywordsCount==2){
+        // else if (patientAge > 30 && keywordsCount==2){
+        else if (patientAge > 30 && (keywordsCount==2 || keywordsCount==3 || keywordsCount==4 || keywordsCount==5)) {
             diabetEvaluation = diabetEvaluation.BORDERLINE;
         }
         else if ((patientAge <=30 && patientGender.equals("M") && keywordsCount>=3 && keywordsCount<5)

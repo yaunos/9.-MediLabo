@@ -32,16 +32,16 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
                     // .csrf().disable()
 
                     .authorizeRequests()
-                     //   .antMatchers("/css/**", "/images/**", "/login.html", "/login", "/loginSuccess.html", "/loginFailure.html", "/web/**").permitAll()
+                    // .antMatchers("/css/**", "/images/**", "/login.html", "/login", "/loginSuccess.html", "/loginFailure.html", "/web/**").permitAll()
                     .antMatchers("/**").permitAll()
                     .anyRequest().authenticated()
+                    // .and()
+                    // .oauth2Login()
+                    //   .loginPage("/login.html")
+                    //   .defaultSuccessUrl("/loginSuccess.html", true)
+                    //   .failureUrl("/loginFailure.html")
+                    //   .permitAll()
                     .and()
-                    //.oauth2Login()
-                    //    .loginPage("/login.html")
-                    //    .defaultSuccessUrl("/loginSuccess.html", true)
-                    //    .failureUrl("/loginFailure.html")
-                    //    .permitAll()
-                    //.and()
                     .logout()
                     .permitAll();
 

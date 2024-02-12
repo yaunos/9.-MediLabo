@@ -13,6 +13,7 @@ public class Constants {
 
     static {
 
+        DIABETES_KEY_LIST.add("Hémoglobine A1C");
         DIABETES_KEY_LIST.add("Microalbumine");
         DIABETES_KEY_LIST.add("Taille");
         DIABETES_KEY_LIST.add("Poids");

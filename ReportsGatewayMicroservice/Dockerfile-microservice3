@@ -1,0 +1,7 @@
+FROM openjdk:11
+# COPY ./microservice3 /app
+COPY ./ReportsGatewayMicroservice /target/application
+# WORKDIR /app
+WORKDIR /application
+EXPOSE 8082
+CMD ["java", "-jar", "microservice3.jar"]

@@ -2,6 +2,8 @@
 package com.preventDiabet.GatewayMicroservice.configuration;
 
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -33,8 +35,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/css/**", "/images/**", "/login.html", "/login", "/loginSuccess.html", "/loginFailure.html", "/web/**").permitAll()
                 .anyRequest().authenticated()
-                .and()
-                .oauth2Login()
+                //.and()
+                //.oauth2Login()
                 .loginPage("/login.html")
                 .defaultSuccessUrl("/loginSuccess.html", true)
                 .failureUrl("/loginFailure.html")
@@ -51,4 +53,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService);
     }
 }
-*/
+
+ */
+

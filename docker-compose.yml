@@ -1,0 +1,44 @@
+
+version: '3'
+
+services:
+  backend_microservice1:
+    container_name: patient
+    build:
+      dockerfile: ./PatientMicroservice/Dockerfile-microservice1
+    ports:
+      - "8080:8080"
+    environment:
+      MYSQL_HOST: mysql_db
+      MYSQL_PORT: 3306
+      MYSQL_DB_NAME: medilabo
+      MYSQL_USER: root
+      MYSQL_PASSWORD: rootroot
+    networks:
+      - microservices-network
+
+  backend_microservice2:
+      container_name: doctors_notes
+      build:
+        dockerfile: ./DoctorsNotesMicroservice/Dockerfile-microservice2
+      ports:
+        - "8081:8081"
+      environment:
+        NOSQL_HOST: host.docker.internal
+        NOSQL_PORT: 27017
+        NOSQL_DB_NAME: medilabo
+      networks:
+        - microservices-network
+
+  frontend_microservice3:
+    container_name: reports_gateway
+    build:
+      dockerfile: ./ReportsGatewayMicroservice/Dockerfile-microservice3
+    ports:
+      - "8082:8082"
+    networks:
+      - microservices-network
+networks:
+  microservices-network:
+    driver: bridge
+
