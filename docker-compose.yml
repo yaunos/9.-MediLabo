@@ -2,43 +2,77 @@
 version: '3'
 
 services:
-  backend_microservice1:
-    container_name: patient
-    build:
-      dockerfile: ./PatientMicroservice/Dockerfile-microservice1
+  mysql:
+    container_name: mysql
+    image: mysql
     ports:
-      - "8080:8080"
+      - "3306:3306"
     environment:
-      MYSQL_HOST: mysql_db
-      MYSQL_PORT: 3306
-      MYSQL_DB_NAME: medilabo
-      MYSQL_USER: root
-      MYSQL_PASSWORD: rootroot
+      MYSQL_ROOT_PASSWORD: rootroot
+      MYSQL_DATABASE: medilabo
+    volumes:
+      - ./infrastructure/mysql:/docker-entrypoint-initdb.d
     networks:
       - microservices-network
 
-  backend_microservice2:
-      container_name: doctors_notes
-      build:
-        dockerfile: ./DoctorsNotesMicroservice/Dockerfile-microservice2
-      ports:
-        - "8081:8081"
-      environment:
-        NOSQL_HOST: host.docker.internal
-        NOSQL_PORT: 27017
-        NOSQL_DB_NAME: medilabo
-      networks:
-        - microservices-network
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./infrastructure/mongo:/docker-entrypoint-initdb.d
+    networks:
+      - microservices-network
 
-  frontend_microservice3:
+  microservice1:
+    container_name: patient
+    build:
+      context: PatientMicroservice
+      dockerfile: Dockerfile-microservice1
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/medilabo?serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: rootroot
+    depends_on:
+      - mysql
+    networks:
+      - microservices-network
+
+  microservice2:
+    container_name: doctors_notes
+    build:
+      # Context is the directory where the Dockerfile is located
+      # Thus, we can access it without any path.
+      context: DoctorsNotesMicroservice
+      dockerfile: Dockerfile-microservice2
+    ports:
+      - "8081:8081"
+    environment:
+      # Override the location of the mongo database
+      SPRING_DATA_MONGODB_HOST: mongo
+    depends_on:
+      - mongo
+    networks:
+      - microservices-network
+
+  microservice3:
     container_name: reports_gateway
     build:
-      dockerfile: ./ReportsGatewayMicroservice/Dockerfile-microservice3
+      context: ReportsGatewayMicroservice
+      dockerfile: Dockerfile-microservice3
+    environment:
+      FEIGNPATIENT_URL: microservice1:8080
+      FEIGNDOCTORS_NOTES_URL: microservice2:8081
     ports:
       - "8082:8082"
     networks:
       - microservices-network
+    depends_on:
+      - microservice1
+      - microservice2
 networks:
   microservices-network:
     driver: bridge
-

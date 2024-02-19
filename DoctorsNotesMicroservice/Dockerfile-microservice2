@@ -1,7 +1,5 @@
-FROM openjdk:11
-# COPY ./microservice2 /app
-COPY ./DoctorsNotesMicroservice /target/application
-# WORKDIR /app
+FROM openjdk:17
+COPY ./target/DoctorsNotesMicroservice-0.0.1-SNAPSHOT.jar /application/microservice2.jar
 WORKDIR /application
 EXPOSE 8081
 CMD ["java", "-jar", "microservice2.jar"]
