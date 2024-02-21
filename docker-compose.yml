@@ -64,8 +64,8 @@ services:
       context: ReportsGatewayMicroservice
       dockerfile: Dockerfile-microservice3
     environment:
-      FEIGNPATIENT_URL: microservice1:8080
-      FEIGNDOCTORS_NOTES_URL: microservice2:8081
+      FEIGN_PATIENT_URL: microservice1:8080
+      FEIGN_NOTES_URL: microservice2:8081
     ports:
       - "8082:8082"
     networks:
